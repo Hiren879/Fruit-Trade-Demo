@@ -14,16 +14,16 @@ These instructions will get you a copy of the project up and running on your loc
 2. Remove .git folder if you want to push it as your own copy of application.
 3. Do Maven clean and install.
 
-###Run the project
+### Run the project
 You can run project simply by running file **TradeEngine.java** as a main program from IDE.
 
 
-###Instruction before using Trade Engine :
+### Instruction before using Trade Engine :
 
 1. User should stricrtly follow instructions given at the starting of Trade Engine.
 2. User should go thorough samples of input/output provided in this file.
 
-###Functionality :
+### Functionality :
 
 1. Multiple fruits can be traded
 2. Enough validations provided to prevent bad input
@@ -31,11 +31,11 @@ You can run project simply by running file **TradeEngine.java** as a main progra
 4. Simple and better interaction with Trade Engine via CMD
 5. Profit for specific fruit can be fetched using command :: PROFIT <FRUIT>
 
-###Points taken care when creating Trade Engine :
+### Points taken care when creating Trade Engine :
 
 1. No external library is used
 
-###Scope of improvement :
+### Scope of improvement :
 This is minimalistic version of proposed system hence there is always room to do more and add more functionality in existing application. What are they ? Here is the list of upcoming features/fixes.
 
 1. User regex to validate input to give flexibility to User
@@ -43,6 +43,6 @@ This is minimalistic version of proposed system hence there is always room to do
 3. Add more functionalities like give list of fruites to trade, last traded price, last traded quantity etc.
 
 
-###Author
+### Author
 ---
 [Hiren Savalia](https://github.com/Hiren879)
