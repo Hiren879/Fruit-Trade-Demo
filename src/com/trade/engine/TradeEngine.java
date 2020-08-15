@@ -21,7 +21,7 @@ public class TradeEngine {
 
 		System.out.println();
 		System.out.println("You can check PROFIT using following command :: ");
-		System.out.println("PROFIT");
+		System.out.println("PROFIT <FRUIT>");
 
 		System.out.println();
 		System.out.println();
