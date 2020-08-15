@@ -3,7 +3,6 @@ package com.trade.engine;
 import java.util.Scanner;
 
 import com.trade.calculate.TradeManager;
-import com.trade.model.TradeType;
 
 public class TradeEngine {
 	public static void main(String args[]) {
@@ -25,9 +24,6 @@ public class TradeEngine {
 		System.out.println("PROFIT");
 
 		System.out.println();
-		System.out.println("To EXIT the system anytime, kindly press CTRL + C");
-
-		System.out.println();
 		System.out.println();
 		System.out.println("Kindly start entring input");
 		System.out.println();
@@ -45,14 +41,9 @@ public class TradeEngine {
 							.println("INVALID INPUT FORMAT !! Kindly retry with correct input.");
 				} else {
 					try {
-						String fruitName = inputArr[1];
-						int fruitPrice = Integer.parseInt(inputArr[2]);
-						int fruitQuantity = Integer.parseInt(inputArr[3]);
-						calculateTrade.calculateBuyOrSellTrade(fruitName,
-								fruitPrice, fruitQuantity, input.startsWith("BUY") ? TradeType.BUY : TradeType.SELL);
+						calculateTrade.validateAndInsertTrade(inputArr);
 					} catch (Exception e) {
-						System.out
-								.println("INVALID INPUT FORMAT !! Kindly retry with correct input.");
+						System.out.println(e.getMessage());
 					}
 				}
 			} else if (input.startsWith("PROFIT")) {
