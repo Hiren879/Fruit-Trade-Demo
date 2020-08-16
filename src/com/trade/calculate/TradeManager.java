@@ -18,16 +18,20 @@ import com.trade.model.TradeType;
  */
 public class TradeManager {
 	
+	private static final String KINDLY_BUY_AND_SELL_SOMETHING_TO_GAIN_THE_PROFIT = "Kindly Buy and Sell something to gain the profit.";
+	// String constants
+	private static final String YOU_CAN_NOT_SELL_MORE_THAN_WHAT_YOU_OWN = "You can not sell more than what you own.";
 	private static final String KINDLY_ENTER_BUY_OR_SELL_KEYWORD = "Kindly enter BUY or SELL keyword.";
 	private static final String KINDLY_BUY_SOMETHING_IN_ORDER_TO_SELL_IT = "Kindly BUY something in order to SELL it.";
 	private static final String KINDLY_CHECK_PRICE_QUANTITY_FORMAT_ONLY_POSITIVE_NUMBERS_ARE_ALLOWED = "Kindly check price/quantity format. Only positive numbers are allowed.";
+	
 	// local DB to store all trade history
-	private Map<TradeType, Map<String, List<Trade>>> tradeMap = new HashMap<>();
+	private Map<TradeType, Map<String, List<Trade>>> tradeMap = new HashMap<TradeType, Map<String,List<Trade>>>();
 
 	public TradeManager() {
-		this.tradeMap = new HashMap<>();
-		Map<String, List<Trade>> buyMapList = new HashMap();
-		Map<String, List<Trade>> sellMapList = new HashMap();
+		this.tradeMap = new HashMap<TradeType, Map<String,List<Trade>>>();
+		Map<String, List<Trade>> buyMapList = new HashMap<String, List<Trade>>();
+		Map<String, List<Trade>> sellMapList = new HashMap<String, List<Trade>>();
 		tradeMap.put(TradeType.BUY, buyMapList);
 		tradeMap.put(TradeType.SELL, sellMapList);
 	}
@@ -52,11 +56,11 @@ public class TradeManager {
 	public void validateAndInsertTrade(String[] tradeArr)
 			throws InvalidTradeException, InvalidPriceQuantityFormatException, SellQuantityException {
 		// 1.
-		if (!tradeArr[0].equals("BUY") && !tradeArr[0].equals("SELL")) {
+		if (!tradeArr[0].equals(TradeType.BUY.toString()) && !tradeArr[0].equals(TradeType.SELL.toString())) {
 			throw new InvalidTradeException(KINDLY_ENTER_BUY_OR_SELL_KEYWORD);
 		}
 
-		TradeType tradeType = tradeArr[0].equals("BUY") ? TradeType.BUY
+		TradeType tradeType = tradeArr[0].equals(TradeType.BUY.toString()) ? TradeType.BUY
 				: TradeType.SELL;
 
 		// 2.
@@ -84,7 +88,7 @@ public class TradeManager {
 					KINDLY_BUY_SOMETHING_IN_ORDER_TO_SELL_IT);
 		}
 
-		// 4. Sell quantity must be lesser than buy quantity for given fruit
+		// 4.
 		if (tradeType == TradeType.SELL) {
 			List<Trade> buyList = tradeMap.get(TradeType.BUY).get(fruitName);
 			int totalBuyQuantity = 0;
@@ -104,7 +108,7 @@ public class TradeManager {
 			}
 			if (totalSellQuantity > totalBuyQuantity) {
 				throw new SellQuantityException(
-						"You can not sell more than what you own.");
+						YOU_CAN_NOT_SELL_MORE_THAN_WHAT_YOU_OWN);
 			}
 		}
 		
@@ -133,12 +137,12 @@ public class TradeManager {
 			int fruitQuantity, TradeType tradeType) {
 		Map<String, List<Trade>> buySellMasterMap = tradeMap.get(tradeType);
 		if (buySellMasterMap.containsKey(fruitName)) {
-			List<Trade> tradeList = (ArrayList<Trade>) buySellMasterMap
+			List<Trade> tradeList = buySellMasterMap
 					.get(fruitName);
 			tradeList.add(new Trade(fruitPrice, fruitQuantity));
 			setUpTradeMap(fruitName, tradeType, buySellMasterMap, tradeList);
 		} else {
-			List<Trade> tradeList = new ArrayList<>();
+			List<Trade> tradeList = new ArrayList<Trade>();
 			tradeList.add(new Trade(fruitPrice, fruitQuantity));
 			setUpTradeMap(fruitName, tradeType, buySellMasterMap, tradeList);
 		}
@@ -151,6 +155,13 @@ public class TradeManager {
 		}
 	}
 
+	/**
+	 * 
+	 * @param fruitName
+	 * @param tradeType
+	 * @param buySellMasterMap
+	 * @param tradeList
+	 */
 	private void setUpTradeMap(String fruitName, TradeType tradeType,
 			Map<String, List<Trade>> buySellMasterMap, List<Trade> tradeList) {
 		buySellMasterMap.put(fruitName, tradeList);
@@ -160,8 +171,14 @@ public class TradeManager {
 	/**
 	 * This method will calculate profit for given fruit
 	 * @param fruitName
+	 * @throws InvalidTradeException 
 	 */
-	public void calculateProfit(String fruitName) {
+	public void calculateProfit(String fruitName) throws InvalidTradeException {
+		
+		if (tradeMap.get(TradeType.BUY).get(fruitName) == null || tradeMap.get(TradeType.SELL).get(fruitName) == null) {
+			throw new InvalidTradeException(KINDLY_BUY_AND_SELL_SOMETHING_TO_GAIN_THE_PROFIT);
+		}
+		
 		Map<String, List<Trade>> masterSellMap = tradeMap.get(TradeType.SELL);
 		Map<String, List<Trade>> masterBuyMap = tradeMap.get(TradeType.BUY);
 		List<Trade> sellTradeList = masterSellMap.get(fruitName);
@@ -170,6 +187,7 @@ public class TradeManager {
 		// 1. Get total sell quantity & total sell value
 		int totalSellQuantity = 0;
 		int totalSellValue = 0;
+		
 		for (Trade sellTrade : sellTradeList) {
 			totalSellQuantity += sellTrade.getFruitQuantity();
 			totalSellValue += sellTrade.getFruitPrice()
