@@ -26,11 +26,11 @@ These instructions will get you a copy of the project up and running on your loc
 ### Functionality :
 
 1. Multiple fruits can be traded
-2. Enough validations provided to prevent bad input
+2. Validations provided to prevent bad input
 3. Proper messages are communicated in case of any issue/errors
 4. Simple and better interaction with Trade Engine via CMD
 5. Profit for specific fruit can be fetched using command :: PROFIT FRUIT_NAME
-6. User can not directly get profit before making any BUY-SELL trades.
+
 
 ### Validations added :
 
@@ -38,6 +38,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. User can not enter keywords other than"BUY" or "SELL"
 3. User can not place SELL order before BUY order
 4. User can not SELL more quantity than he actually owns
+5. User can not directly get profit before making any BUY-SELL trades.
 
 
 ### Points taken care when creating Trade Engine :
