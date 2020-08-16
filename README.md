@@ -30,6 +30,7 @@ These instructions will get you a copy of the project up and running on your loc
 3. Proper messages are communicated in case of any issue/errors
 4. Simple and better interaction with Trade Engine via CMD
 5. Profit for specific fruit can be fetched using command :: PROFIT FRUIT_NAME
+6. User can not directly get profit before making any BUY-SELL trades.
 
 ### Validations added :
 
@@ -123,3 +124,7 @@ Kindly enter BUY or SELL keyword.
 SELL BANANA 30 100
 
 Kindly BUY something in order to SELL it.
+
+PROFIT APPLE
+
+Kindly Buy and Sell something to gain the profit.
