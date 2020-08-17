@@ -54,7 +54,8 @@ This is minimalistic version of proposed system hence there is always room to do
 
 
 ## Note for reviewer
-Due to limited access and firewall restriction I need to move project from one machine to another. Hence full git history will not be available. Though most of the commit history can be found at my github link provided below. Let me know in case of any query/question. 
+Due to limited access and firewall restriction I need to move project from one machine to another. Hence full git history and maven build tool is not integrated in this repo. Though most of the commit history can be found at my github link provided below and maven integration is done in local repo in my another machine.
+Let me know in case of any query/question. 
 
 ### Author
 ---
