@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 4. "FruitTrade-0.0.1-SNAPSHOT.jar" jar file to run directly from cmd
 
 ### Options to run the project [Currently only option 1 is available]
-1. Simplest way to run this project is to unzip the folder and import project as java project. Run project simply by running file **TradeEngine.java** as a main program from IDE.
+1. Simplest way to run this project is to unzip the folder and import project as "projects from Folder or Archive". Run project simply by running file **TradeEngine.java** as a main program from IDE.
 2. Unzip the folder go to command line, go to project folder and enter following commands. You need to locate jar file in .m2 repository. 
 	- mvn clean install
 	- java -jar FruitTrade-0.0.1-SNAPSHOT.jar
