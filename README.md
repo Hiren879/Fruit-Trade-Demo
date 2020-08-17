@@ -50,6 +50,7 @@ This is minimalistic version of proposed system hence there is always room to do
 
 1. User regex to validate input to give flexibility to User
 2. Add more functionalities like give list of fruits to trade, last traded price, last traded quantity etc.
+3. Allow decimal values for fruits
 
 
 ## Note for reviewer
